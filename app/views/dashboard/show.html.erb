@@ -1,0 +1,29 @@
+<div class="container text-center">
+  <div class="mt-5">
+  <h3>Book Information</h3> <hr class="bg-dark my-4">
+<p class="text-white">
+  <p class="d-inline-block"><strong class="text-dark"><i class="fas fa-book"></i> Title:</strong></p>
+  <p class="text-dark d-inline-block"><%= @book.title %></p>
+</p>
+
+<p class="text-white">
+  <p class="d-inline-block"><strong class="text-dark"><i class="fas fa-user-tie"></i> Author:</strong></p>
+  <p class="text-dark d-inline-block"><%= @book.author %></p>
+</p>
+
+<p class="text-white">
+   <p class="d-inline-block"><strong class="text-dark"><i class="fas fa-sort-numeric-down"></i> Pagecount:</strong></p>
+   <p class="text-dark d-inline-block"><%= @book.pagecount %></p>
+</p>
+
+<p class="text-white">
+  <p class="d-inline-block"><strong class="text-dark"><i class="fas fa-share-square"></i> Share Status:</strong></p>
+  <p class="text-dark d-inline-block"><%= @book.status %></p>
+  
+</p>
+<div><% if current_user.id == @book.user.id %>
+    <%= link_to 'Edit', edit_dashboard_path(@book), class:"btn btn-info text-white" %>
+  <% end %>
+  <%= link_to "Back", dashboard_index_path, class:"btn btn-info text-white" %></div>
+  </div>
+</div>

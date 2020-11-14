@@ -1,0 +1,5 @@
+<h4 class="mt-5 mb-4 text-dark"><i class="fas fa-book"></i> <%= @trading_user.username %> suggested  <%= @trading_book.title %> book. </h4>
+
+<button class="btn btn-info"><%= link_to 'Approve', :controller => :trades, :action => :approve %></button>
+<button class="btn btn-info"><%= link_to 'Deny', :controller => :trades, :action => :deny %></button>
+<button class="btn btn-info"><%= link_to "Back", :back %></button>

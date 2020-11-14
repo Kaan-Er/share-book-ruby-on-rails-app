@@ -1,0 +1,61 @@
+<div class="center">
+
+  <% user = User.find(@book.user_id) %>
+
+  <div class="card border-secondary mb-3 my-5" style="max-width: 32rem; margin: auto">
+  <div class="card-header bg-transparent border-secondary "><div class="d-inline-block data-toggle="tooltip" data-placement="top" title="Author""><i class="fas fa-user-tie"></i> <%=@book.author %> </div><div class="d-inline-block float-right" data-toggle="tooltip" data-placement="top" title="Username"><i class="far fa-user"></i> <%= user.username %></div></div>
+  <div class="card-body text-success">
+    <h3 class="card-title text-center mb-3"><i class="fas fa-book"></i> <%=@book.title %></h3>  <hr>
+    
+    <h4 class="card-text text-primary text-center"><i class="fas fa-comments"></i> All Comments</h4> <hr class="bg-dark">
+    <%= render @comments %>
+    
+    <div class='comments'></div>
+    
+     <% @unapproved.each do |comment| %>
+    <div><h5 class="text-dark d-inline-block">Title: </h5> <p class="text-dark d-inline-block"><%= comment.title %></p></div>
+    <div><h5 class="text-dark d-inline-block">Content: </h5> <p class="text-dark d-inline-block"><%= comment.content %></p></div>
+    <div><h5 class="text-dark d-inline-block">Statu: </h5> <p class="d-inline-block text-danger d-inline-block">Unapproved</p></div> <hr class="bg-dark">
+    
+  <%  end %>
+  
+  </div>
+  <div class="card-footer bg-transparent border-secondary text-center">  <% if @book.tradeable %>
+    <% if @trade_control %>
+      <% if @trade_control.trade_status == "waiting" %>
+        <h3 class="alert alert-primary"><i class="fas fa-share-alt-square"></i> Tradeable <a href="<%= new_book_trade_path(@book.id) %>" class="btn btn-primary text-white disabled">Waiting </a></h3>
+      <% else %>
+        <h3 class="alert alert-primary"><i class="fas fa-share-alt-square"></i> Tradeable <a href="<%= new_book_trade_path(@book.id) %>" class="btn btn-primary text-white">Trade </a></h3>
+      <% end %>
+    <% else %>
+      <h3 class="alert alert-primary"><i class="fas fa-share-alt-square"></i> Tradeable <a href="<%= new_book_trade_path(@book.id) %>" class="btn btn-primary text-white">Trade </a></h3>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+</div>
+  <hr>
+  <div class="text-center">   
+    <h2 class="text-dark my-5"><i class="fas fa-comment-dots"></i> Do Comment</h2> <hr class="bg-dark">
+
+    <%= form_with(model: [ @book, @comment ], local: false) do |form|%>
+    <p>
+      <% @book.title="" %>
+      <%= form.label :title, class:" border-secondary text-secondary" %><br>
+      <%= form.text_field :title %>
+    </p>
+
+    <p>
+      <%= form.label :content, class:"text-secondary" %><br>
+      <%= form.text_area :content, class:"pb-cmnt-textarea border-secondary" %>
+    </p>
+
+    <p>
+      <div class="m-3 text-primary font-weight-bold" id="flashnotice"></div>
+      <%= form.submit 'Send Comment', class:"btn btn-info" %>
+    </p>
+    
+    <%= link_to 'Dashboard', dashboard_index_path , class:"btn btn-info text-white mb-5"%>
+    <%= link_to 'Home', root_path , class:"btn btn-info text-white mb-5"%>
+    <% end %>
+  </div>

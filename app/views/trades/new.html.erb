@@ -1,0 +1,17 @@
+<div class="text-center">
+<h2 class="m-3 text-dark"><i class="fas fa-share-alt-square"></i> Trade of Books</h2> <hr class="bg-dark mb-5">
+
+<h4 class="m-3"><i class="fas fa-quote-right"></i> <%= "#{@book.title} book was shared by #{@user.username}." %></h4>
+<%= form_with(model: [ @book, @book.trades.build ], local: true) do |form|  %>
+  <div class="form-group m-3 mt-5">
+    <% if current_user.books.any? %>
+      <h4 class="my-3 text-secondary">Please Select Book</h4>
+      <div class="row justify-content-md-center"><%= form.select(:offered_book_id, @books.map{|book| [book.title, book.id]},{},{:class=>"form-control form-control-lg col-4 mb-4"})%></div>
+      <button type="submit" class="btn btn-info my-3">Trade Books</button>
+    <% else %>
+      <h5 class="my-3 text-danger">You don't have any books!</h5>
+    <% end %>
+  </div>
+  <%= link_to "Back", :back ,class:"btn btn-info ml-3 mt-5"%>
+<% end %>
+</div>

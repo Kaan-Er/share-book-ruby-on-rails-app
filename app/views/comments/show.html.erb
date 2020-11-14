@@ -1,0 +1,20 @@
+<div class="text-center">
+<% book = Book.find(@comment.book_id) %>
+<p>
+<i class="fas fa-comments"></i><strong class="text-dark"> <%= book_name = book.title %> book comment</strong> <hr class=bg-dark>
+</p>
+<p class="text-dark">
+  <strong class="text-dark">Title:</strong>
+  <%= @comment.title %>
+</p>
+
+<p class="text-dark">
+  <strong class="text-dark">Content:</strong>
+  <%= @comment.content %>
+</p>
+
+<hr class="bg-dark">
+
+<button class="btn btn-info"><%= link_to 'Approve', :controller => :comments, :action => :approve%></button>
+<button class="btn btn-info"><%= link_to 'Back', dashboard_index_path %></button>
+</div>

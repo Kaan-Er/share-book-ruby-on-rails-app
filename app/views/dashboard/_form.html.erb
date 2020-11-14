@@ -1,0 +1,48 @@
+<div class="container mt-4 text-dark center text-center">
+  <%= form_with model: @book, local: true do |form| %>
+
+    <% if @book.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@book.errors.count, "error") %> prohibited
+          this book from being saved:
+        </h2>
+        <ul>
+          <% @book.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <i class="fas fa-book"></i> <%= form.label :title %><br>
+      <%= form.text_field :title, class:"rounded border-secondary" %>
+    </p>
+
+    <p>
+      <i class="fas fa-user-tie"></i> <%= form.label :author %><br>
+      <%= form.text_field :author, class:"rounded border-secondary" %>
+    </p>
+
+    <p>
+      <i class="fas fa-sort-numeric-down"></i> <%= form.label :pagecount %><br>
+      <%= form.number_field :pagecount, class:"rounded border-secondary" %>
+    </p>
+
+    <p>
+      <p class="d-inline-block"><i class="fas fa-share-square"></i> <%= form.label :share %><br></p>
+      <%= form.check_box :status %>
+    </p>
+
+    <p>
+      <p class="d-inline-block"><i class="fas fa-share-alt-square"></i> <%= form.label :tradeable %><br></p>
+      <%= form.check_box :tradeable %>
+    </p>
+
+    <p>
+      <%= form.submit "Save Book", class:"btn btn-info text-white"%>
+      <%= link_to "Back", dashboard_index_path, class:"btn btn-info text-white" %>
+    </p>
+  <% end %>
+</div>

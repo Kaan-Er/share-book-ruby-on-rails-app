@@ -1,0 +1,84 @@
+<%= link_to 'New Book', new_dashboard_path, class: "btn btn-info text-white m-1 mt-3" %>
+
+<hr>
+<table class="table table-striped text-dark text-center">
+  <tr>
+    <th class="text-dark"><i class="fas fa-book"></i> Title</th>
+    <th class="text-dark"><i class="fas fa-user-tie"></i> Author</th>
+    <th class="text-dark"><i class="fas fa-sort-numeric-down"></i> Pagecount</th>
+    <th class="text-dark"><i class="far fa-user"></i> Username</th>
+    <th class="text-dark"><i class="fas fa-cog"></i> Actions</th>
+  </tr>
+
+  <% @books.each do |book| %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.author %></td>
+      <td><%= book.pagecount %></td>
+      <td><%= book.user.username %></td>
+      <td>
+        <%= link_to 'Show', dashboard_path(book), class:"btn btn-info text-white" %>
+        <% if current_user.id == book.user_id%>
+            <%= link_to 'Edit', edit_dashboard_path(book), class:"btn btn-success text-white" %>
+            <% trade_control = Trade.where(offered_book_id: book.id).or(Trade.where(book_id: book.id)).first %>
+            <% if !trade_control %>
+              <%= link_to 'Destroy', book_path(book),
+                method: :delete,
+                data: { confirm: 'Are you sure?' }, class:"btn btn-danger text-white" %>
+            <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<hr>
+
+<table class="table table-striped text-dark text-center my-5">
+  <tr>
+    <th class="text-dark"><i class="fas fa-comments"></i> Incoming Comments</th>
+    <th class="text-dark"><i class="fas fa-comment-dots"></i> My Comments</th>
+  </tr>
+  <tr>
+    <td>
+      <% @books.each do |book| %>
+        <% book_comments = Comment.where('book_id': book.id) %>
+        <% book_comments.each do |comment| %>
+          <% user_comment = User.find(comment.user_id)%>
+            <p class="border-bottom"><%= "#{user_comment.username} wrote a comment your #{book.title} book." %><a class="btnClick text-primary font-weight-bold" href="/books/<%= comment.book_id %>/comments/<%= comment.id %>" > Click</a> here to accept it.</p>
+        <% end %>
+      <% end %>
+    </td>
+    <td>
+      <% @my_comments.each do |comment| %>
+        <p class="border-bottom"><%= "Title: #{comment.title}. || Comment Status: #{comment.accept}." %></p>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<table class="table table-striped mb-5 mt-2 text-dark text-center">
+  <tr>
+    <th class="text-dark"><i class="fas fa-hand-sparkles"></i> Incoming Wish List</th>
+    <th class="text-dark"><i class="fas fa-hand-sparkles"></i> My Wish List</th>
+  </tr>  
+      <tr>
+      <td>
+        <% @trades.each do |item| %>
+        <% trade_book = Book.find(item.book_id) %>
+        <% trade_user = User.find(trade_book.user_id) %>
+        <% trading_user = User.find(item.user_id) %>
+          <% if trade_user.id == current_user.id %>
+            <p class="border-bottom" class="d-block"><%= "#{trading_user.username} send a trade request to the #{trade_book.title} book." %><%= link_to "Show", edit_book_trade_path(item.book.id, item.id), class:"btn btn-info text-white ml-4" %></p>         
+          <% end %>
+         <% end %>
+      </td>
+      <td>
+       <% @my_wish_list.each do |item| %>
+        <%wish_book = Book.find_by_id(item.book_id)%>
+        <%wish_user = User.find_by_id(wish_book.user_id)%>
+        <p class="d-block mb-3 border-bottom"><%= "#{wish_book.title}, #{wish_user.username} #{item.trade_status}" %></p>
+        <% end %>
+      </td>
+      </tr>
+</table>
