@@ -1,7 +1,7 @@
 # Share Book Platform
 Book-Trader is a Ruby on Rails application that you can Sign in , share books, and trade books with another users. It uses MVC pattern and renders serverside HTML to the view.
 
-* For Styling: bootstrap
+* For Styling: Bootstrap
 
 * For Authentication: Devise
 
