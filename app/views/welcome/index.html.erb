@@ -11,7 +11,7 @@
     <% @books.each do |book| %>
       <% user = User.find(book.user_id) %>
       <div class="card text-white bg-primary m-5 col-4" style="min-width: 26rem;">
-        <div class="card-header bg-dark font-weight-bold text-white rounded text-center pt-3"><i class="fas fa-book-reader float-left fa-2x"></i><%= book.title %></div>
+        <div class="card-header bg-dark font-weight-bold text-white rounded text-center pt-3"><i class="fas fa-book-reader float-left fa-2x"></i><%= book.title %><i type="button" class="fas fa-bookmark float-right" data-toggle="tooltip" data-placement="top" title="Add to bookmarks"></i></div>
         <div class="card-body">
           <p><p class="card-title font-weight-bold d-inline text-dark"><i class="fas fa-user-tie"></i> Author : </p><%= book.author %></p><hr>
           <p><p class="card-title font-weight-bold d-inline text-dark"><i class="far fa-user"></i> Username : </p><%= user.username %></p><hr>
