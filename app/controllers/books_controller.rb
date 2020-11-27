@@ -42,6 +42,9 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
 
+    @book_user = User.find(@book.user_id)
+    @owner_control = current_user.id === @book_user.id
+
     @unapproved = Comment.where(accept: 0, user_id: current_user.id, book_id: params[:id])
 
     @trade_control = Trade.where(book_id: params[:id]).first

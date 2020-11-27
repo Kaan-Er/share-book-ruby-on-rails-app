@@ -20,7 +20,8 @@
   <%  end %>
   
   </div>
-  <div class="card-footer bg-transparent border-secondary text-center">  <% if @book.tradeable %>
+  <div class="card-footer bg-transparent border-secondary text-center">  
+  <% if @book.tradeable && !@owner_control %>
     <% if @trade_control %>
       <% if @trade_control.trade_status == "waiting" %>
         <h3 class="alert alert-primary"><i class="fas fa-share-alt-square"></i> Tradeable <a href="<%= new_book_trade_path(@book.id) %>" class="btn btn-primary text-white disabled">Waiting </a></h3>
