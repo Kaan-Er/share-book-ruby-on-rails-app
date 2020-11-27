@@ -69,7 +69,9 @@
         <% trade_user = User.find(trade_book.user_id) %>
         <% trading_user = User.find(item.user_id) %>
           <% if trade_user.id == current_user.id %>
-            <p class="border-bottom" class="d-block"><%= "#{trading_user.username} send a trade request to the #{trade_book.title} book." %><%= link_to "Show", edit_book_trade_path(item.book.id, item.id), class:"btn btn-info text-white ml-4" %></p>         
+            <% if item.trade_status == "waiting" %>
+              <p class="border-bottom" class="d-block"><%= "#{trading_user.username} send a trade request to the #{trade_book.title} book." %><%= link_to "Show", edit_book_trade_path(item.book.id, item.id), class:"btn btn-info text-white ml-4" %></p>
+            <% end %>  
           <% end %>
          <% end %>
       </td>
