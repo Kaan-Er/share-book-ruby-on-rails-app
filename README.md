@@ -1,24 +1,28 @@
-# README
+# Share Book Platform
+Share Book is a Ruby on Rails application that you can Sign in , share books, and trade books with another users. It uses MVC pattern and renders serverside HTML to the view.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* For Styling: Bootstrap
 
-Things you may want to cover:
+* For Authentication: Devise
 
-* Ruby version
+* Application Link: https://book-platform.herokuapp.com/
 
-* System dependencies
+* Installation
+* Clone the repository
+* git clone https://github.com/Kaan-Er/share-book.git
+* cd book_share
+* Check your Ruby version
+* ruby -v
+* If not, install the right ruby version using rbenv (it could take a while):
 
-* Configuration
+* rbenv install 2.7.1
+* Install dependencies
+* Using Bundler:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* bundle install
+* Initialize the database
+* rails db:create 
+* rails db:migrate 
+* rails db:seed
+* Open The Project Local
+* rails s
