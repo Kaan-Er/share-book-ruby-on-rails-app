@@ -45,7 +45,9 @@
         <% book_comments = Comment.where('book_id': book.id) %>
         <% book_comments.each do |comment| %>
           <% user_comment = User.find(comment.user_id)%>
-            <p class="border-bottom"><%= "#{user_comment.username} wrote a comment your #{book.title} book." %><a class="btnClick text-primary font-weight-bold" href="/books/<%= comment.book_id %>/comments/<%= comment.id %>" > Click</a> here to accept it.</p>
+            <% if !comment.accept %>
+              <p class="border-bottom"><%= "#{user_comment.username} wrote a comment your #{book.title} book." %><a class="btnClick text-primary font-weight-bold" href="/books/<%= comment.book_id %>/comments/<%= comment.id %>" > Click</a> here to accept it.</p>
+            <% end %>  
         <% end %>
       <% end %>
     </td>
