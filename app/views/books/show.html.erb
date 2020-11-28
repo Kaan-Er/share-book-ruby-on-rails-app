@@ -3,21 +3,35 @@
   <% user = User.find(@book.user_id) %>
 
   <div class="card border-secondary mb-3 my-5" style="max-width: 32rem; margin: auto">
-  <div class="card-header bg-transparent border-secondary "><div class="d-inline-block data-toggle="tooltip" data-placement="top" title="Author""><i class="fas fa-user-tie"></i> <%=@book.author %> </div><div class="d-inline-block float-right" data-toggle="tooltip" data-placement="top" title="Username"><i class="far fa-user"></i> <%= user.username %></div></div>
-  <div class="card-body text-success">
-    <h3 class="card-title text-center mb-3"><i class="fas fa-book"></i> <%=@book.title %></h3>  <hr>
-    
-    <h4 class="card-text text-primary text-center"><i class="fas fa-comments"></i> All Comments</h4> <hr class="bg-dark">
-    <%= render @comments %>
-    
-    <div class='comments'></div>
-    
-     <% @unapproved.each do |comment| %>
-    <div><h5 class="text-dark d-inline-block">Title: </h5> <p class="text-dark d-inline-block"><%= comment.title %></p></div>
-    <div><h5 class="text-dark d-inline-block">Content: </h5> <p class="text-dark d-inline-block"><%= comment.content %></p></div>
-    <div><h5 class="text-dark d-inline-block">Statu: </h5> <p class="d-inline-block text-danger d-inline-block">Unapproved</p></div> <hr class="bg-dark">
-    
-  <%  end %>
+    <div class="card-header bg-transparent border-secondary text-center">
+      <div class="d-inline-block float-left" data-toggle="tooltip" data-placement="top" title="Author">
+        <i class="fas fa-user-tie"></i> <%=@book.author %> 
+      </div>
+      <div class="d-inline-block" >
+        <% if @bookmark_control == nil %>
+         <a type="button" class="fas fa-heart fa-2x" data-toggle="tooltip" data-placement="top" title="Add to bookmarks" href="/books/<%= @book.id %>/favorite" style="color: #343A40;"><%= link_to '', :controller => :books, :action => :favorite %></a>
+        <% else %>
+          <a type="button" class="fas fa-heart fa-2x" data-toggle="tooltip" data-placement="top" title="Remove from bookmarks" href="/books/<%= @book.id %>/favorite" style="color: red;"><%= link_to '', :controller => :books, :action => :favorite %></a>
+        <% end %>
+      </div>
+      <div class="d-inline-block float-right" data-toggle="tooltip" data-placement="top" title="Username">
+        <i class="far fa-user"></i> <%= user.username %>
+      </div>
+    </div>
+    <div class="card-body text-success">
+      <h3 class="card-title text-center mb-3"><i class="fas fa-book"></i> <%=@book.title %></h3>  <hr>
+      
+      <h4 class="card-text text-primary text-center"><i class="fas fa-comments"></i> All Comments</h4> <hr class="bg-dark">
+      <%= render @comments %>
+      
+      <div class='comments'></div>
+      
+      <% @unapproved.each do |comment| %>
+      <div><h5 class="text-dark d-inline-block">Title: </h5> <p class="text-dark d-inline-block"><%= comment.title %></p></div>
+      <div><h5 class="text-dark d-inline-block">Content: </h5> <p class="text-dark d-inline-block"><%= comment.content %></p></div>
+      <div><h5 class="text-dark d-inline-block">Statu: </h5> <p class="d-inline-block text-danger d-inline-block">Unapproved</p></div> <hr class="bg-dark">
+      
+    <%  end %>
   
   </div>
   <div class="card-footer bg-transparent border-secondary text-center">  

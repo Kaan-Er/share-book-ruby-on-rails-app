@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   match '/comments/:id', to: 'comments#new', via: 'get'
   match '/users/:id/comment', to: 'users#show', via: 'get'
   match '/books/:id/comments/:id/approve', to: 'comments#approve', via: 'get'
+  match '/books/:id/favorite', to: 'books#favorite', via: 'get'
   match '/books/:id/trades/:id/approve', to: 'trades#approve', via: 'get'
   match '/books/:id/trades/:id/deny', to: 'trades#deny', via: 'get'
   devise_for :users, :path_prefix => 'd'

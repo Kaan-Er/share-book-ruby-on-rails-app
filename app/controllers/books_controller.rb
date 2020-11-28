@@ -14,6 +14,21 @@ class BooksController < ApplicationController
     end  
   end
 
+  def favorite
+    @bookmark = Bookmark.new
+    @bookmark.user_id = current_user.id
+    @bookmark.book_id = params[:id]
+
+    @bookmark_control = Bookmark.where(book_id: params[:id], user_id: current_user.id).first
+    if @bookmark_control != nil
+      @bookmark_control.destroy
+      redirect_to controller: 'books', action: 'show', id: (params[:id])
+    else
+      @bookmark.save 
+      redirect_to controller: 'books', action: 'show', id: (params[:id])
+    end
+  end
+
   def edit
     @book = Book.find(params[:id])
   end
@@ -44,6 +59,8 @@ class BooksController < ApplicationController
 
     @book_user = User.find(@book.user_id)
     @owner_control = current_user.id === @book_user.id
+
+    @bookmark_control = Bookmark.where(book_id: params[:id], user_id: current_user.id).first
 
     @unapproved = Comment.where(accept: 0, user_id: current_user.id, book_id: params[:id])
 
