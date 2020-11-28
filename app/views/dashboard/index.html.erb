@@ -2,6 +2,8 @@
 
 <hr>
 <table class="table table-striped text-dark text-center">
+<h3 class="text-dark text-center font-weight-bold mt-5"><i class="fas fa-book"></i> My Books</h3>
+<hr class="divider my-4" />
   <tr>
     <th class="text-dark"><i class="fas fa-book"></i> Title</th>
     <th class="text-dark"><i class="fas fa-user-tie"></i> Author</th>
@@ -28,6 +30,31 @@
             <% end %>
         <% end %>
       </td>
+    </tr>
+  <% end %>
+</table>
+
+<hr>
+
+<table class="table table-striped text-dark text-center">
+  <h3 class="text-dark text-center font-weight-bold mt-5"><i class="fas fa-bookmark"></i> My Favorite Books</h3>
+  <hr class="divider my-4" />
+  <tr>
+    <th class="text-dark"><i class="fas fa-book"></i> Title</th>
+    <th class="text-dark"><i class="fas fa-user-tie"></i> Author</th>
+    <th class="text-dark"><i class="fas fa-sort-numeric-down"></i> Pagecount</th>
+    <th class="text-dark"><i class="far fa-user"></i> Username</th>
+    <th class="text-dark"><i class="fas fa-cog"></i> Actions</th>
+  </tr>
+
+  <% @my_bookmarks.each do |item| %>
+    <% book = Book.find(item.book_id) %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.author %></td>
+      <td><%= book.pagecount %></td>
+      <td><%= book.user.username %></td>
+      <td><%= link_to 'Show', book_path(book), class:"btn btn-info text-white" %></td>
     </tr>
   <% end %>
 </table>

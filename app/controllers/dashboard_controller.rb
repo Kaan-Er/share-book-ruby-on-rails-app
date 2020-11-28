@@ -7,9 +7,14 @@ class DashboardController < ApplicationController
 
   def index
     @books = Book.where('user_id': current_user.id)
+
     @my_comments = Comment.where('user_id': current_user.id)
+
     @my_wish_list = Trade.where('user_id': current_user.id)
+
     @trades = Trade.all
+
+    @my_bookmarks = Bookmark.where('user_id': current_user.id)
   end
 
   def create
