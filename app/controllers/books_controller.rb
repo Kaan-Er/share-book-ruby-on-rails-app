@@ -20,6 +20,7 @@ class BooksController < ApplicationController
     @bookmark.book_id = params[:id]
 
     @bookmark_control = Bookmark.where(book_id: params[:id], user_id: current_user.id).first
+    
     if @bookmark_control != nil
       @bookmark_control.destroy
       redirect_to controller: 'books', action: 'show', id: (params[:id])

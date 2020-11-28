@@ -1,11 +1,38 @@
 <% if current_user.present? %>
   <%= link_to 'Add New Book', new_dashboard_path, class:"btn btn-info text-white m-2 mt-3" %> <hr class="bg-dark">
-<%else%>
-  <h3 class="col-sm text-center p-4 font-weight-bold"><i class="fas fa-book"></i> Shareable Books <i class="fas fa-book"></i></h3>
-  <hr class="divider my-4" />
-<%end%>
+<% end %>
 
 <hr>
+
+<table class="table table-striped text-dark text-center">
+  <h3 class="text-dark text-center font-weight-bold"><i class="fas fa-bookmark"></i> Favorite Books</h3>
+  <hr class="divider my-4" />
+  <br>
+  <tr>
+    <th class="text-dark"><i class="fas fa-book"></i> Title</th>
+    <th class="text-dark"><i class="fas fa-user-tie"></i> Author</th>
+    <th class="text-dark"><i class="fas fa-sort-numeric-down"></i> Pagecount</th>
+    <th class="text-dark"><i class="far fa-user"></i> Username</th>
+    <th class="text-dark"><i class="fas fa-heart"></i> Popularity</th>
+  </tr>
+
+  <% @bookmarks.map do |book_id, count| %>
+    
+    <% book = Book.find(book_id) %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.author %></td>
+      <td><%= book.pagecount %></td>
+      <td><%= book.user.username %></td>
+      <td><%= count %></td>
+    </tr>
+  <% end %>
+</table>
+
+<hr> <br> <br>
+
+<h3 class="col-sm text-center text-dark p-4 font-weight-bold"><i class="fas fa-book"></i> Shareable Books</h3>
+<hr class="divider my-2" />
 
 <div class="row center ml-5">
     <% @books.each do |book| %>
