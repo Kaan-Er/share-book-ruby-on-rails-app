@@ -58,7 +58,7 @@
       <%= link_to "<< Previous", root_path(page: (@page - 1) < 0 ? 0 : (@page - 1)), class:" font-weight-bold mx-1 kaan"%>
     </li>
     <li class="page-item">
-      <%= link_to "Next >>", root_path(page: (@page + 1) > @page_count - 1 ? @page_count - 1 : (@page + 1)), class:"font-weight-bold kaan"%>
+      <%= link_to "Next >>", root_path(page: (@page_count != 1) && (@page + 1) < (@page_count) ? (@page + 1) : @page_count - 1), class:"font-weight-bold kaan"%>
     </li>
   </ul>
 </nav>
