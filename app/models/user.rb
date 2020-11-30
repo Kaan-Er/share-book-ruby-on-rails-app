@@ -12,7 +12,6 @@ class User < ApplicationRecord
   # validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   # validates :username, presence: true, length: { minimum:5, maximum:50}
 
-
   attr_writer :login
 
   before_create :build_username

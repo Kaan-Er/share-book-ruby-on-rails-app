@@ -51,3 +51,14 @@
       </div>
     <% end %>
 </div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center mt-5">
+    <li class="page-item">
+      <%= link_to "<< Previous", root_path(page: (@page - 1) < 0 ? 0 : (@page - 1)), class:" font-weight-bold mx-1 kaan"%>
+    </li>
+    <li class="page-item">
+      <%= link_to "Next >>", root_path(page: (@page + 1) > @page_count - 1 ? @page_count - 1 : (@page + 1)), class:"font-weight-bold kaan"%>
+    </li>
+  </ul>
+</nav>

@@ -101,6 +101,25 @@ h6 {
   margin-bottom: 0.5rem;
 }
 
+.kaan {
+  display: flex;
+  justify-content: center;
+  background: #f4623a;
+  color: #fff;
+  padding: .5em .5em;
+  border-radius: 10px;
+  transition: all .3s;
+  height: 40px;
+}
+
+.kaan:hover {
+  box-sizing: border-box;
+  color: #fff;
+  background: #d3441d;
+  text-decoration: none;
+  font-size: 17px;
+}
+
 p {
   margin-top: 0;
   margin-bottom: 1rem;
