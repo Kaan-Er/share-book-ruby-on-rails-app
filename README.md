@@ -9,10 +9,10 @@ Share Book is a Ruby on Rails application that you can Sign in , share books and
   - Users can add books to own favorite list
   - The five most liked books by users have been added to the favorite books list on the main page
   - Users can see the books they add to their favorites on their own dashboard
-
+  - Pagination of books on the home page
+  
 ##### Also the features I want on the site as an additional feature;
 - Categorizing books
-- Pagination of books on the home page
     
 ### Technologies
 
