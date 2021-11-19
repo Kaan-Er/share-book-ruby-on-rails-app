@@ -40,6 +40,3 @@ Open the project local
 $ rails s
 ```
 
-### Application Link
-
-`You can visit:` https://book-platform.herokuapp.com/
